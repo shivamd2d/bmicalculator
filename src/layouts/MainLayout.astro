@@ -1,0 +1,56 @@
+---
+import MetaTags from '../components/seo/MetaTags.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  keywords?: string;
+  ogImage?: string;
+  ogType?: string;
+}
+
+const { title, description, canonicalUrl, keywords, ogImage, ogType } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <MetaTags
+      title={title}
+      description={description}
+      canonicalUrl={canonicalUrl}
+      keywords={keywords}
+      ogImage={ogImage}
+      ogType={ogType}
+    />
+    <JsonLd pageTitle={title} pageUrl={canonicalUrl} />
+
+    <!-- Theme Inline Script to prevent theme flashing -->
+    <script is:inline>
+      (function () {
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
+  </head>
+
+  <body class="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-indigo-500 selection:text-white">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

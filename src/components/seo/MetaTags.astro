@@ -1,0 +1,57 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  ogType?: string;
+  keywords?: string;
+}
+
+const {
+  title = "BMI Calculator – Free, Accurate Body Mass Index Calculator",
+  description = "Free BMI Calculator — calculate Body Mass Index instantly. Get your BMI score, weight category, healthy weight range, ideal weight & personalized health insights. Supports metric & imperial units.",
+  canonicalUrl = Astro.url.href,
+  ogImage = "https://bmicalculator.app/og-image.png",
+  ogType = "website",
+  keywords = "bmi calculator, bmi, body mass index, calculate bmi, bmi formula, bmi chart, bmi calculator for men, bmi calculator for women, bmi calculator kg, bmi calculator with age, bmi full form, bmi meaning, bmi index, normal bmi, bmi normal range, what is bmi, bmi calculator female, bmi calculator male"
+} = Astro.props;
+
+const siteName = "BMI Calculator Pro";
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta name="language" content="English" />
+<meta name="author" content="BMI Calculator Pro" />
+<meta name="revisit-after" content="7 days" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- OpenGraph / Facebook -->
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="BMI Calculator Pro – Free Body Mass Index Tool" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@bmicalculator" />
+<meta name="twitter:creator" content="@bmicalculator" />
+<meta name="twitter:url" content={canonicalUrl} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content="BMI Calculator Pro – Free Body Mass Index Tool" />

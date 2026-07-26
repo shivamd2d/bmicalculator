@@ -1,0 +1,149 @@
+---
+import { FAQ_ITEMS } from '../../constants/bmi';
+import { KEYWORD_FAQ_ITEMS } from '../../constants/faq-keywords';
+
+export interface Props {
+  pageTitle?: string;
+  pageUrl?: string;
+  isCalculatorPage?: boolean;
+}
+
+const { pageTitle = "BMI Calculator", pageUrl = Astro.url.href, isCalculatorPage = true } = Astro.props;
+
+// Merge base + keyword-targeted FAQ items
+const ALL_FAQ_ITEMS = [...FAQ_ITEMS, ...KEYWORD_FAQ_ITEMS];
+
+// Website Schema
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "BMI Calculator Pro",
+  "url": "https://bmicalculator.app",
+  "description": "Free, accurate BMI Calculator. Calculate Body Mass Index instantly, check your weight category, ideal weight, and get personalized health insights.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://bmicalculator.app/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+
+// Organization Schema
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "BMI Calculator Pro",
+  "url": "https://bmicalculator.app",
+  "logo": "https://bmicalculator.app/favicon.svg",
+  "sameAs": [],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https://bmicalculator.app/contact-us"
+  }
+};
+
+// WebApplication Schema for Calculator
+const appSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "BMI Calculator Pro",
+  "url": pageUrl,
+  "description": "Free online BMI Calculator. Calculate Body Mass Index using metric or imperial units. Get your BMI score, weight category, ideal weight, and personalized health insights instantly.",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript. Requires HTML5.",
+  "keywords": "bmi calculator, body mass index, calculate bmi, bmi formula, bmi chart, bmi calculator for men, bmi calculator for women, bmi calculator kg, bmi normal range",
+  "featureList": [
+    "BMI calculation in metric and imperial units",
+    "BMI category classification (WHO standards)",
+    "Ideal weight using Devine, Robinson, Miller, and BMI-22 formulas",
+    "Body fat percentage estimation",
+    "Calorie and TDEE calculation",
+    "Calculation history saved locally",
+    "Dark mode support",
+    "Mobile-first responsive design"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+};
+
+// FAQ Schema — all entries including keyword-targeted ones
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": ALL_FAQ_ITEMS.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
+
+// Breadcrumb Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://bmicalculator.app"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": pageTitle,
+      "item": pageUrl
+    }
+  ]
+};
+
+// HowTo Schema for BMI Calculation
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Calculate BMI",
+  "description": "Step-by-step guide to calculate your Body Mass Index (BMI) using the standard WHO formula.",
+  "totalTime": "PT1M",
+  "tool": [{ "@type": "HowToTool", "name": "BMI Calculator" }],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Measure your weight",
+      "text": "Weigh yourself on a calibrated scale. Record your weight in kilograms (or pounds for imperial calculation).",
+      "position": 1
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Measure your height",
+      "text": "Stand straight against a wall and measure your height in metres (or feet and inches for imperial).",
+      "position": 2
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Apply the BMI formula",
+      "text": "Divide your weight (kg) by your height squared (m2). Formula: BMI = weight (kg) divided by height squared (m2). For imperial: BMI = [weight (lbs) divided by height squared (in)] x 703.",
+      "position": 3
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Interpret your result",
+      "text": "Compare your BMI to WHO thresholds: below 18.5 = Underweight; 18.5 to 24.9 = Normal Weight; 25 to 29.9 = Overweight; 30 and above = Obese.",
+      "position": 4
+    }
+  ]
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+{isCalculatorPage && <script type="application/ld+json" set:html={JSON.stringify(appSchema)} />}
+{isCalculatorPage && <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />}
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

@@ -1,0 +1,67 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout
+  title="Privacy Policy - BMI Calculator Pro"
+  description="Read the Privacy Policy for BMI Calculator Pro. We are committed to protecting your privacy. No personal data is collected or stored on our servers."
+>
+  <section class="py-12 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+      <!-- Page Header -->
+      <div class="space-y-3 pb-8 border-b border-slate-200 dark:border-slate-800">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-300 text-xs font-bold border border-indigo-200 dark:border-indigo-800">
+          Legal
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">Privacy Policy</h1>
+        <p class="text-sm text-slate-500 dark:text-slate-400">Last updated: July 2025</p>
+      </div>
+
+      <div class="prose prose-slate dark:prose-invert max-w-none text-sm leading-relaxed space-y-8 text-slate-700 dark:text-slate-300">
+
+        <div class="p-5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800">
+          <p class="font-bold text-emerald-700 dark:text-emerald-300">🔒 Your Privacy at a Glance</p>
+          <p class="text-emerald-700 dark:text-emerald-200 mt-1">BMI Calculator Pro does not collect, transmit, or store any personal data on external servers. All calculations happen entirely in your browser. No account required. No tracking. No data sharing.</p>
+        </div>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">1. Information We Collect</h2>
+          <p>BMI Calculator Pro is a client-side web application. All health calculations (BMI, ideal weight, calorie intake, etc.) are performed locally in your web browser using JavaScript. We do <strong>not</strong> transmit any health data, personal identifiers, or measurements to our servers.</p>
+          <p>The only data stored is voluntarily saved calculation history, which is written exclusively to your own browser's <code>localStorage</code> — a storage mechanism that exists only on your device and is never sent to us.</p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">2. How We Use Your Information</h2>
+          <p>Because we do not collect personal data, there is no personal information to use or process. Aggregate, anonymized analytics (e.g., page view counts via privacy-respecting analytics tools) may be collected to understand traffic patterns and improve our tools. This data contains no personally identifiable information (PII).</p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">3. Cookies</h2>
+          <p>BMI Calculator Pro uses a single essential localStorage key (<code>bmi_calculator_history_v1</code>) to persist your saved calculation history locally on your device. This is not a cookie and is not sent to any server. You may clear this data at any time through your browser settings or using the "Clear All" function within the History panel.</p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">4. Third-Party Services</h2>
+          <p>Our website may load fonts from Google Fonts. Google's own privacy policy governs the use of any data collected through that service. We do not integrate third-party advertising networks, social trackers, or data brokers.</p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">5. Children's Privacy</h2>
+          <p>Our service is not directed to individuals under the age of 13. We do not knowingly collect personal information from children. If you believe a child has provided us with personal data, please contact us and we will promptly address the concern.</p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">6. Changes to This Policy</h2>
+          <p>We reserve the right to update this Privacy Policy periodically. Material changes will be reflected in the "Last updated" date above. Continued use of our services after changes constitutes acceptance of the revised policy.</p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">7. Contact Us</h2>
+          <p>If you have any questions or concerns about this Privacy Policy, please reach out to us via our <a href="/contact-us" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">Contact Us</a> page.</p>
+        </section>
+
+      </div>
+    </div>
+  </section>
+</MainLayout>

@@ -1,0 +1,33 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { BodyFatCalculator } from '../components/satellite/BodyFatCalculator';
+---
+
+<MainLayout
+  title="Body Fat Calculator - US Navy Method Percentage Tool"
+  description="Estimate your body fat percentage, lean body mass, and fat mass using the clinically validated US Navy Body Circumference method."
+>
+  <section class="py-12 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <h1 class="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">Body Fat Calculator</span> (US Navy Method)
+        </h1>
+        <p class="text-base text-slate-600 dark:text-slate-300">
+          Calculate your body fat percentage using body circumference tape measurements developed by the US Navy Health Research Center.
+        </p>
+      </div>
+
+      <BodyFatCalculator client:load />
+
+      <div class="max-w-4xl mx-auto space-y-6 pt-12 border-t border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Why Measure Body Fat Percentage?</h2>
+        <p>
+          Body fat percentage separates essential fat and adipose tissue from lean muscle mass, offering a clearer picture of body composition than weight or BMI alone.
+        </p>
+      </div>
+
+    </div>
+  </section>
+</MainLayout>
