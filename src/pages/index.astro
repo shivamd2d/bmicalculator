@@ -1,16 +1,15 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
-import { BmiCalculator } from '../components/calculator/BmiCalculator';
-import { BMI_CATEGORIES, FAQ_ITEMS, MYTHS_LIST, SATELLITE_TOOLS } from '../constants/bmi';
-import { KEYWORD_FAQ_ITEMS } from '../constants/faq-keywords';
-const ALL_FAQS = [...FAQ_ITEMS, ...KEYWORD_FAQ_ITEMS];
-import { Sparkles, CheckCircle2, ShieldCheck, Flame, Scale, Activity, ArrowRight, HelpCircle, AlertTriangle } from 'lucide-react';
+import Layout from '../layouts/Layout.astro';
+import { BmiCalculator } from '../components/BmiCalculator';
+import { FAQ_ITEMS, SATELLITE_TOOLS } from '../constants/bmi';
+import { Sparkles, CheckCircle2, ShieldCheck, Flame, Scale, Activity, ArrowRight, HelpCircle, AlertTriangle, Info, Heart, Award, FileText, TrendingUp } from 'lucide-react';
 ---
 
-<MainLayout
-  title="BMI Calculator – Free Body Mass Index Calculator (Metric & Imperial)"
-  description="Free BMI Calculator — instantly calculate Body Mass Index, check your weight category, healthy weight range, ideal body weight & personalised health insights. Supports kg & lbs. WHO standards."
-  keywords="bmi calculator, calculate bmi, bmi, body mass index, bmi formula, bmi chart, bmi calculator for men, bmi calculator for women, bmi calculator kg, bmi calculator with age, bmi full form, bmi meaning, bmi normal range, normal bmi, what is bmi, bmi index, bmi calculator female, bmi calculator male"
+<Layout
+  title="BMI Calculator Pro - Accurate Body Mass Index & Health Chart"
+  description="Calculate your Body Mass Index (BMI), BMI Prime, and ideal healthy weight range instantly. Free online BMI calculator for adults, teens, and children with WHO/CDC charts."
+  canonicalUrl="https://bmicalculatorpro.online/"
+  keywords="bmi calculator, bmi calculator pro, calculate body mass index, bmi formula, bmi chart adults, healthy weight calculator, ponderal index, bmi prime"
 >
   
   {/* HERO & CALCULATOR SECTION */}
@@ -18,25 +17,25 @@ import { Sparkles, CheckCircle2, ShieldCheck, Flame, Scale, Activity, ArrowRight
     <!-- Background Glow Accents -->
     <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-indigo-500/20 via-purple-500/20 to-pink-500/20 blur-3xl pointer-events-none rounded-full"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative space-y-10">
       
-      <!-- Hero Headline -->
-      <div class="text-center max-w-3xl mx-auto space-y-4 mb-10">
+      <!-- H1 Headline -->
+      <div class="text-center max-w-4xl mx-auto space-y-4">
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/80 border border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 text-xs font-bold shadow-sm">
           <Sparkles class="w-4 h-4 text-indigo-500" />
-          <span>Medical-Grade Precision • WHO Standards</span>
+          <span>Medical-Grade Precision • WHO & CDC Standards</span>
         </div>
 
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.15]">
-          Accurate <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">BMI Calculator</span> & Health Engine
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.15]">
+          BMI Calculator Pro — Accurate Body Mass Index Tool
         </h1>
 
-        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
-          Instantly determine your Body Mass Index, Ideal Body Weight, Healthy Weight Range, and Ponderal Index. Powered by evidence-based clinical algorithms.
+        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto">
+          Instantly calculate your Body Mass Index (BMI), BMI Prime, Ponderal Index, and Healthy Weight Range with medical-grade clinical algorithms.
         </p>
       </div>
 
-      <!-- Main Interactive Calculator Island -->
+      <!-- React Calculator Island Rendered Here -->
       <div id="calculator-island" class="scroll-mt-24">
         <BmiCalculator client:load />
       </div>
@@ -44,292 +43,363 @@ import { Sparkles, CheckCircle2, ShieldCheck, Flame, Scale, Activity, ArrowRight
     </div>
   </section>
 
-  {/* BMI CATEGORIES SECTION */}
-  <section class="py-16 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/80 dark:border-slate-800/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+  <!-- STATIC EDUCATIONAL & SEO CONTENT ARCHITECTURE -->
+  <section class="py-16 bg-white dark:bg-slate-900/60 border-t border-slate-200/80 dark:border-slate-800/80">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 text-slate-700 dark:text-slate-300">
       
-      <div class="text-center max-w-2xl mx-auto space-y-3">
-        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          World Health Organization (WHO) BMI Categories
-        </h2>
-        <p class="text-sm text-slate-600 dark:text-slate-400">
-          Understand how adult Body Mass Index scores are classified into standardized health risk spectrums.
-        </p>
-      </div>
-
-      <!-- 6 Categories Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {Object.values(BMI_CATEGORIES).map((cat) => (
-          <div class={`p-6 rounded-3xl ${cat.bgColor} border ${cat.borderColor} shadow-sm space-y-4 flex flex-col justify-between`}>
-            <div class="space-y-3">
-              <div class="flex items-center justify-between">
-                <span class={`px-3 py-1 rounded-full text-xs font-extrabold ${cat.badgeBg}`}>
-                  {cat.label}
-                </span>
-                <span class="text-xs font-black tracking-wider text-slate-500">
-                  BMI {cat.rangeText}
-                </span>
-              </div>
-
-              <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
-                {cat.description}
-              </p>
-            </div>
-
-            <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800/60 space-y-2">
-              <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Key Health Advice</span>
-              <ul class="space-y-1 text-xs text-slate-600 dark:text-slate-400">
-                {cat.healthAdvice.map((advice) => (
-                  <li class="flex items-start gap-1.5">
-                    <span class="text-indigo-500 font-bold">•</span>
-                    <span>{advice}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        ))}
-      </div>
-
-    </div>
-  </section>
-
-  {/* HEALTHY WEIGHT & IDEAL WEIGHT FORMULAS SECTION */}
-  <section class="py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-      
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        
-        <div class="space-y-6">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 text-xs font-bold border border-emerald-200 dark:border-emerald-800">
-            <Scale class="w-3.5 h-3.5" />
-            <span>Target Weight Analytics</span>
-          </div>
-
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            How Ideal Body Weight (IBW) is Calculated
-          </h2>
-
-          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-            While BMI measures current proportional density, clinical medicine relies on specialized Ideal Body Weight formulas developed by researchers to estimate optimal physiological weight baselines.
-          </p>
-
-          <div class="space-y-4">
-            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
-              <h3 class="font-bold text-sm text-slate-900 dark:text-white">Devine Formula (1974)</h3>
-              <p class="text-xs text-slate-500">The gold standard formula used in modern medicine to calculate pharmacokinetic drug dosages and renal clearance clearance rates.</p>
-            </div>
-
-            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
-              <h3 class="font-bold text-sm text-slate-900 dark:text-white">BMI 22 Median Standard</h3>
-              <p class="text-xs text-slate-500">Determines body weight corresponding to a median healthy BMI score of 22.0, providing a balanced target for adult populations.</p>
-            </div>
-
-            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
-              <h3 class="font-bold text-sm text-slate-900 dark:text-white">Robinson & Miller Formulas (1983)</h3>
-              <p class="text-xs text-slate-500">Modernized statistical models designed to improve accuracy for height and body proportion variations.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Ponderal Index Box Card -->
-        <div class="p-8 rounded-3xl bg-gradient-to-br from-indigo-900 via-slate-900 to-purple-950 text-white shadow-2xl space-y-6 relative overflow-hidden">
-          <div class="space-y-2">
-            <span class="text-xs font-extrabold uppercase tracking-widest text-indigo-300">Advanced Metric</span>
-            <h3 class="text-2xl font-black">Understanding Ponderal Index (PI)</h3>
-          </div>
-
-          <p class="text-xs text-indigo-100 leading-relaxed">
-            The Ponderal Index (also known as the Corpulence Index) measures body mass relative to <strong>height cubed</strong> (<span class="font-mono">kg / m³</span>) rather than height squared.
-          </p>
-
-          <div class="p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 space-y-2">
-            <div class="text-xs font-bold text-indigo-200">Why use Ponderal Index?</div>
-            <p class="text-xs text-slate-300 leading-relaxed">
-              Standard BMI tends to exaggerate fatness in tall individuals and underestimate fatness in shorter individuals. Ponderal Index provides a more consistent volumetric ratio across height extremes.
-            </p>
-          </div>
-
-          <div class="grid grid-cols-2 gap-3 text-xs pt-2">
-            <div class="p-3 rounded-xl bg-white/5 border border-white/10">
-              <div class="text-[10px] text-indigo-300 font-bold uppercase">Normal PI Range</div>
-              <div class="text-lg font-black text-white mt-0.5">11.0 – 15.0 <span class="text-xs font-normal">kg/m³</span></div>
-            </div>
-            <div class="p-3 rounded-xl bg-white/5 border border-white/10">
-              <div class="text-[10px] text-indigo-300 font-bold uppercase">Formula</div>
-              <div class="text-lg font-black text-white mt-0.5">Weight ÷ Height³</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  {/* MYTHS VS FACTS SECTION */}
-  <section class="py-16 bg-slate-100/60 dark:bg-slate-900/40 border-y border-slate-200/80 dark:border-slate-800/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-      
-      <div class="text-center max-w-2xl mx-auto space-y-3">
-        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Common BMI Myths & Facts
-        </h2>
-        <p class="text-sm text-slate-600 dark:text-slate-400">
-          Debunking widespread misconceptions surrounding Body Mass Index and health screening.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {MYTHS_LIST.map((item) => (
-          <div class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-            <div class="flex items-center gap-2 text-rose-600 dark:text-rose-400 text-xs font-bold">
-              <AlertTriangle class="w-4 h-4" />
-              <span>{item.myth}</span>
-            </div>
-            <div class="text-sm font-bold text-emerald-600 dark:text-emerald-400">
-              {item.fact}
-            </div>
-            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              {item.explanation}
-            </p>
-          </div>
-        ))}
-      </div>
-
-    </div>
-  </section>
-
-  {/* RELATED SATELLITE TOOLS SHOWCASE */}
-  <section class="py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-      
-      <div class="text-center max-w-2xl mx-auto space-y-3">
-        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Explore Our Suite of Health Calculators
-        </h2>
-        <p class="text-sm text-slate-600 dark:text-slate-400">
-          Comprehensive, evidence-based fitness and body composition tools designed for accuracy.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {SATELLITE_TOOLS.map((tool) => (
-          <a
-            href={tool.href}
-            class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all group flex flex-col justify-between space-y-4"
-          >
-            <div class="space-y-3">
-              <div class="w-10 h-10 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold">
-                <Activity class="w-5 h-5" />
-              </div>
-              <h3 class="font-extrabold text-slate-900 dark:text-white text-base group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">
-                {tool.title}
-              </h3>
-              <p class="text-xs text-slate-500 leading-relaxed">
-                {tool.description}
-              </p>
-            </div>
-
-            <div class="flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400">
-              <span>Try Calculator</span>
-              <ArrowRight class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </a>
-        ))}
-      </div>
-
-    </div>
-  </section>
-
-  {/* 20+ FAQ ACCORDION SECTION */}
-  <section id="faq" class="py-16 bg-slate-100/60 dark:bg-slate-900/40 border-t border-slate-200/80 dark:border-slate-800/80 scroll-mt-16">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-      
-      <div class="text-center space-y-3">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-300 text-xs font-bold">
-          <HelpCircle class="w-4 h-4" />
-          <span>Frequently Asked Questions</span>
-        </div>
-        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Everything You Need to Know About BMI
-        </h2>
-      </div>
-
-      <!-- Accordion Grid -->
+      <!-- 3. What is Body Mass Index (BMI)? -->
       <div class="space-y-4">
-        {ALL_FAQS.map((faq, index) => (
-          <details class="group rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 cursor-pointer shadow-sm transition [&[open]]:shadow-md">
-            <summary class="flex items-center justify-between font-bold text-sm sm:text-base text-slate-900 dark:text-white list-none select-none">
-              <span>{index + 1}. {faq.question}</span>
-              <span class="ml-4 transition-transform group-open:rotate-180 text-indigo-500">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg>
-              </span>
-            </summary>
-            <p class="mt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
-              {faq.answer}
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
+          <Info class="w-7 h-7 text-indigo-600 dark:text-indigo-400" />
+          What is Body Mass Index (BMI)?
+        </h2>
+        <p class="text-base leading-relaxed">
+          Body Mass Index (BMI) is a universally recognized epidemiological screening tool established by the World Health Organization (WHO) to categorize adult human body mass relative to height. First conceptualized in the 19th century by Belgian mathematician Lambert Adolphe Jacques Quetelet, BMI provides a standardized, non-invasive method for evaluating weight-related health risks across global populations.
+        </p>
+        <p class="text-base leading-relaxed">
+          While BMI does not measure body fat directly, extensive clinical research shows that BMI scores strongly correlate with direct measures of total body fat mass, including dual-energy X-ray absorptiometry (DEXA) scans and underwater weighing. Because of its simplicity, cost-effectiveness, and reliability, BMI serves as a frontline clinical parameter for screening obesity, undernutrition, metabolic syndrome, and cardiovascular disease vulnerability.
+        </p>
+      </div>
+
+      <!-- 4. World Health Organization (WHO) Adult BMI Classifications -->
+      <div class="space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
+          <Scale class="w-7 h-7 text-indigo-600 dark:text-indigo-400" />
+          World Health Organization (WHO) Adult BMI Classifications
+        </h2>
+        <p class="text-base leading-relaxed">
+          For adults aged 20 and older, the World Health Organization classifies BMI values into eight distinct clinical categories. These thresholds apply regardless of sex or age for adult populations:
+        </p>
+
+        <!-- Tailwind Table mapping Classifications to BMI Ranges -->
+        <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-slate-100 dark:bg-slate-800/80 text-slate-900 dark:text-white font-extrabold uppercase text-xs">
+              <tr>
+                <th scope="col" class="px-6 py-4">Classification</th>
+                <th scope="col" class="px-6 py-4">BMI Range (kg/m²)</th>
+                <th scope="col" class="px-6 py-4">BMI Prime Range</th>
+                <th scope="col" class="px-6 py-4">Clinical Risk Level</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-medium">
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="px-6 py-4 font-bold text-red-600 dark:text-red-400">Severe Thinness</td>
+                <td class="px-6 py-4">&lt; 16.0</td>
+                <td class="px-6 py-4">&lt; 0.64</td>
+                <td class="px-6 py-4 text-xs font-bold text-red-600 dark:text-red-400">High Risk (Nutritional Deficiency)</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="px-6 py-4 font-bold text-orange-600 dark:text-orange-400">Moderate Thinness</td>
+                <td class="px-6 py-4">16.0 – 16.9</td>
+                <td class="px-6 py-4">0.64 – 0.67</td>
+                <td class="px-6 py-4 text-xs font-bold text-orange-600 dark:text-orange-400">Moderate Risk</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="px-6 py-4 font-bold text-amber-600 dark:text-amber-400">Mild Thinness</td>
+                <td class="px-6 py-4">17.0 – 18.4</td>
+                <td class="px-6 py-4">0.68 – 0.73</td>
+                <td class="px-6 py-4 text-xs font-bold text-amber-600 dark:text-amber-400">Low to Mild Risk</td>
+              </tr>
+              <tr class="bg-emerald-50/60 dark:bg-emerald-950/30 hover:bg-emerald-100/50 dark:hover:bg-emerald-950/50">
+                <td class="px-6 py-4 font-extrabold text-emerald-700 dark:text-emerald-300">Normal Weight</td>
+                <td class="px-6 py-4 font-bold text-emerald-800 dark:text-emerald-200">18.5 – 24.9</td>
+                <td class="px-6 py-4 font-bold text-emerald-800 dark:text-emerald-200">0.74 – 0.99</td>
+                <td class="px-6 py-4 text-xs font-extrabold text-emerald-700 dark:text-emerald-300">Optimal / Lowest Clinical Risk</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="px-6 py-4 font-bold text-amber-600 dark:text-amber-400">Overweight</td>
+                <td class="px-6 py-4">25.0 – 29.9</td>
+                <td class="px-6 py-4">1.00 – 1.19</td>
+                <td class="px-6 py-4 text-xs font-bold text-amber-600 dark:text-amber-400">Increased Co-morbidity Risk</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="px-6 py-4 font-bold text-orange-600 dark:text-orange-400">Obese Class I</td>
+                <td class="px-6 py-4">30.0 – 34.9</td>
+                <td class="px-6 py-4">1.20 – 1.39</td>
+                <td class="px-6 py-4 text-xs font-bold text-orange-600 dark:text-orange-400">High Risk</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="px-6 py-4 font-bold text-red-600 dark:text-red-400">Obese Class II</td>
+                <td class="px-6 py-4">35.0 – 39.9</td>
+                <td class="px-6 py-4">1.40 – 1.59</td>
+                <td class="px-6 py-4 text-xs font-bold text-red-600 dark:text-red-400">Very High Risk</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="px-6 py-4 font-bold text-red-800 dark:text-red-300">Obese Class III</td>
+                <td class="px-6 py-4">&ge; 40.0</td>
+                <td class="px-6 py-4">&ge; 1.60</td>
+                <td class="px-6 py-4 text-xs font-bold text-red-800 dark:text-red-300">Extremely High Risk (Morbid)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 5. CDC Growth Percentiles for Children and Teens (Ages 2–20) -->
+      <div class="space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
+          <Activity class="w-7 h-7 text-indigo-600 dark:text-indigo-400" />
+          CDC Growth Percentiles for Children and Teens (Ages 2–20)
+        </h2>
+        <p class="text-base leading-relaxed">
+          Standard adult fixed BMI cutoffs (such as 25.0 for overweight) do not apply to children and teenagers aged 2 to 20. Because children’s body fat levels fluctuate naturally as they grow and mature, pediatric healthcare providers evaluate BMI relative to age-and-gender-specific percentile growth curves published by the Centers for Disease Control and Prevention (CDC).
+        </p>
+
+        <!-- CDC Percentile Table -->
+        <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-slate-100 dark:bg-slate-800/80 text-slate-900 dark:text-white font-extrabold uppercase text-xs">
+              <tr>
+                <th scope="col" class="px-6 py-4">Pediatric Weight Category</th>
+                <th scope="col" class="px-6 py-4">CDC Percentile Range</th>
+                <th scope="col" class="px-6 py-4">Clinical Description</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-medium">
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="px-6 py-4 font-bold text-blue-600 dark:text-blue-400">Underweight</td>
+                <td class="px-6 py-4 font-extrabold text-slate-900 dark:text-white">&lt; 5th percentile</td>
+                <td class="px-6 py-4 text-xs">BMI is below 95% of children of the same age and sex. Requires growth monitoring.</td>
+              </tr>
+              <tr class="bg-emerald-50/60 dark:bg-emerald-950/30 hover:bg-emerald-100/50 dark:hover:bg-emerald-950/50">
+                <td class="px-6 py-4 font-extrabold text-emerald-700 dark:text-emerald-300">Healthy Weight</td>
+                <td class="px-6 py-4 font-extrabold text-emerald-800 dark:text-emerald-200">5th to 85th percentile</td>
+                <td class="px-6 py-4 text-xs">Optimal growth pattern aligning with standard physiological development curves.</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="px-6 py-4 font-bold text-amber-600 dark:text-amber-400">At Risk of Overweight</td>
+                <td class="px-6 py-4 font-extrabold text-slate-900 dark:text-white">85th to 95th percentile</td>
+                <td class="px-6 py-4 text-xs">Elevated weight trajectory indicating increased likelihood of childhood obesity.</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="px-6 py-4 font-bold text-red-600 dark:text-red-400">Overweight / Obese</td>
+                <td class="px-6 py-4 font-extrabold text-slate-900 dark:text-white">&gt; 95th percentile</td>
+                <td class="px-6 py-4 text-xs">BMI is equal to or greater than 95% of peers. Pediatric lifestyle consultation advised.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 6. BMI Calculation Formulas Explained -->
+      <div class="space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
+          <FileText class="w-7 h-7 text-indigo-600 dark:text-indigo-400" />
+          BMI Calculation Formulas Explained
+        </h2>
+        <p class="text-base leading-relaxed">
+          Calculating BMI relies on mathematical equations that relate body weight directly to height. Depending on your preferred unit measurement system, use one of the two standard equations below:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Metric Worked Example -->
+          <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-3">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="px-2.5 py-1 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-xs font-extrabold">Metric Formula (SI)</span>
+            </h3>
+            <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 font-mono text-xs text-indigo-600 dark:text-indigo-400 font-bold border border-slate-200 dark:border-slate-800">
+              BMI = Weight (kg) / [Height (m)]²
+            </div>
+            <div class="space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
+              <p class="font-bold text-slate-900 dark:text-white">Worked Example:</p>
+              <p>• Height = 175 cm = 1.75 meters</p>
+              <p>• Weight = 70 kg</p>
+              <p>• Height² = 1.75 × 1.75 = 3.0625 m²</p>
+              <p class="font-bold text-emerald-600 dark:text-emerald-400">• BMI = 70 ÷ 3.0625 = 22.86 kg/m² (Normal Weight)</p>
+            </div>
+          </div>
+
+          <!-- US Customary Worked Example -->
+          <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-3">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="px-2.5 py-1 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-xs font-extrabold">US Customary Formula</span>
+            </h3>
+            <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 font-mono text-xs text-indigo-600 dark:text-indigo-400 font-bold border border-slate-200 dark:border-slate-800">
+              BMI = 703 × Weight (lbs) / [Height (inches)]²
+            </div>
+            <div class="space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
+              <p class="font-bold text-slate-900 dark:text-white">Worked Example:</p>
+              <p>• Height = 5 ft 9 in = 69 inches</p>
+              <p>• Weight = 154 lbs</p>
+              <p>• Height² = 69 × 69 = 4,761 in²</p>
+              <p class="font-bold text-emerald-600 dark:text-emerald-400">• BMI = 703 × (154 ÷ 4,761) = 22.74 kg/m² (Normal Weight)</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 7. Understanding BMI Prime & Ponderal Index -->
+      <div class="space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
+          <TrendingUp class="w-7 h-7 text-indigo-600 dark:text-indigo-400" />
+          Understanding BMI Prime & Ponderal Index
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-6 rounded-3xl bg-indigo-50/60 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/40 space-y-3">
+            <h3 class="text-lg font-bold text-indigo-950 dark:text-indigo-200">BMI Prime</h3>
+            <p class="text-xs leading-relaxed text-slate-700 dark:text-slate-300">
+              BMI Prime is the ratio of an individual's calculated BMI to the upper limit of normal BMI (25.0). Formula: <span class="font-mono font-bold">BMI Prime = BMI / 25.0</span>.
             </p>
-          </details>
-        ))}
+            <p class="text-xs leading-relaxed text-slate-700 dark:text-slate-300">
+              A BMI Prime of 1.0 marks the boundary between healthy weight and overweight. Values below 0.74 represent underweight, 0.74 to 1.0 represent healthy weight, 1.0 to 1.2 indicate overweight, and &gt;1.2 represent obesity.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-3xl bg-purple-50/60 dark:bg-purple-950/30 border border-purple-100 dark:border-purple-900/40 space-y-3">
+            <h3 class="text-lg font-bold text-purple-950 dark:text-purple-200">Ponderal Index (PI)</h3>
+            <p class="text-xs leading-relaxed text-slate-700 dark:text-slate-300">
+              The Ponderal Index (also known as Corpulence Index) divides body mass by height cubed (<span class="font-mono font-bold">kg/m³</span>) or height in inches by the cube root of weight in pounds (<span class="font-mono font-bold">Height / ∛Weight</span>).
+            </p>
+            <p class="text-xs leading-relaxed text-slate-700 dark:text-slate-300">
+              Because human body volume scales three-dimensionally, the Ponderal Index produces more accurate proportionality assessments for extremely tall or short individuals where standard 2D BMI squared math tends to distort results.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Health Risks Associated with High & Low BMI -->
+      <div class="space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
+          <AlertTriangle class="w-7 h-7 text-indigo-600 dark:text-indigo-400" />
+          Health Risks Associated with High & Low BMI
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-6 rounded-3xl border border-red-200 dark:border-red-900/50 bg-red-50/40 dark:bg-red-950/20 space-y-3">
+            <h3 class="text-lg font-bold text-red-900 dark:text-red-200 flex items-center gap-2">
+              <span>Risks of High BMI (&ge; 25.0)</span>
+            </h3>
+            <ul class="space-y-2 text-xs text-slate-700 dark:text-slate-300">
+              <li class="flex items-start gap-2">
+                <span class="text-red-500 font-bold">•</span>
+                <span><strong>Cardiovascular Disease:</strong> Elevated blood pressure, coronary atherosclerosis, stroke risk.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-500 font-bold">•</span>
+                <span><strong>Metabolic Disorders:</strong> Type 2 Diabetes mellitus, insulin resistance, dyslipidemia.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-500 font-bold">•</span>
+                <span><strong>Respiratory Strain:</strong> Obstructive sleep apnea, hypoventilation, asthma exacerbation.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-500 font-bold">•</span>
+                <span><strong>Joint Degradation:</strong> Accelerated osteoarthritis in load-bearing joints (knees, hips).</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="p-6 rounded-3xl border border-amber-200 dark:border-amber-900/50 bg-amber-50/40 dark:bg-amber-950/20 space-y-3">
+            <h3 class="text-lg font-bold text-amber-900 dark:text-amber-200 flex items-center gap-2">
+              <span>Risks of Low BMI (&lt; 18.5)</span>
+            </h3>
+            <ul class="space-y-2 text-xs text-slate-700 dark:text-slate-300">
+              <li class="flex items-start gap-2">
+                <span class="text-amber-500 font-bold">•</span>
+                <span><strong>Nutritional Malnutrition:</strong> Anemia, essential vitamin shortages, electrolyte imbalances.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-amber-500 font-bold">•</span>
+                <span><strong>Skeletal Weakness:</strong> Osteopenia, bone mass reduction, elevated fracture risk.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-amber-500 font-bold">•</span>
+                <span><strong>Immune Suppression:</strong> Lower white blood cell reserves and delayed wound healing.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-amber-500 font-bold">•</span>
+                <span><strong>Hormonal Imbalance:</strong> Menstrual disruption, amenorrhea, and fertility challenges.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Limitations of BMI -->
+      <div class="space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
+          <ShieldCheck class="w-7 h-7 text-indigo-600 dark:text-indigo-400" />
+          Limitations of BMI (Muscle Mass, Bodybuilders, Elderly, Pregnancy)
+        </h2>
+        <p class="text-base leading-relaxed">
+          Although BMI provides an efficient population-level estimate, healthcare practitioners recognize critical limitations when assessing individual health:
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 space-y-1.5">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white">1. Athletes &amp; Bodybuilders</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Muscle tissue is ~18% denser than fat tissue. Highly muscular individuals often register an "overweight" or "obese" BMI despite having single-digit body fat percentages.
+            </p>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 space-y-1.5">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white">2. Elderly Adults (&gt;65 years)</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Aging is accompanied by sarcopenia (natural muscle loss). Older adults may fall in the "normal" BMI range while carrying excessive abdominal visceral fat.
+            </p>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 space-y-1.5">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white">3. Pregnancy &amp; Lactation</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Weight gain during pregnancy reflects fetal development, fluid retention, placenta, and expanded blood volume, rendering standard BMI formulas inapplicable.
+            </p>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 space-y-1.5">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white">4. Fat Distribution &amp; Visceral Fat</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              BMI does not locate where body fat is stored. Visceral fat surrounding abdominal organs carries far higher cardiovascular risk than subcutaneous fat on hips or thighs.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. Frequently Asked Questions -->
+      <div id="faq" class="space-y-6 scroll-mt-20">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
+          <HelpCircle class="w-7 h-7 text-indigo-600 dark:text-indigo-400" />
+          Frequently Asked Questions
+        </h2>
+        <div class="space-y-4">
+          {FAQ_ITEMS.map((item, index) => (
+            <details class="group p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 transition-all [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 dark:text-white text-sm sm:text-base">
+                <span>{item.question}</span>
+                <span class="ml-4 transition-transform duration-200 group-open:rotate-180 text-indigo-600 dark:text-indigo-400 font-black">
+                  ↓
+                </span>
+              </summary>
+              <p class="mt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200/60 dark:border-slate-700/60 pt-3">
+                {item.answer}
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- Satellite Tools Navigation Bar -->
+      <div class="pt-8 border-t border-slate-200 dark:border-slate-800 space-y-4">
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white text-center">
+          Explore Other Precision Health Calculators
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {SATELLITE_TOOLS.map((tool) => (
+            <a
+              href={tool.href}
+              class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-800 hover:border-indigo-500 transition group text-center flex flex-col items-center justify-center space-y-1"
+            >
+              <span class="text-xs font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">
+                {tool.title}
+              </span>
+              <span class="text-[10px] text-slate-500 line-clamp-1">
+                {tool.description}
+              </span>
+            </a>
+          ))}
+        </div>
       </div>
 
     </div>
   </section>
 
-  {/* ── SEO ARTICLE SECTION ─────────────────────────────────────────────── */}
-  <section class="py-16 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <article class="prose prose-slate dark:prose-invert max-w-none text-sm leading-relaxed space-y-5 text-slate-700 dark:text-slate-300">
-
-        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">BMI Calculator: The Complete Guide to Understanding Body Mass Index</h2>
-
-        <p>A <strong>BMI calculator</strong> is one of the most widely used tools in preventive healthcare. Body Mass Index — commonly written as <strong>BMI</strong> — is a simple numerical value derived from your height and weight that gives clinicians and individuals a quick snapshot of where body weight sits relative to height. Whether you are tracking weight loss progress, assessing cardiovascular risk, or simply curious about what the <strong>BMI formula</strong> means, understanding BMI is the first step toward informed health decisions.</p>
-
-        <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">What Is BMI and What Does It Stand For?</h3>
-        <p>The <strong>full form of BMI</strong> is <strong>Body Mass Index</strong>. The BMI index was developed by Belgian mathematician Adolphe Quetelet in the 19th century and was later popularised in clinical research by physiologist Ancel Keys in 1972. Today it is endorsed by the World Health Organization (WHO), the Centers for Disease Control and Prevention (CDC), and most national health bodies globally as a first-line screening tool for weight-related health risk.</p>
-        <p><strong>BMI meaning</strong> in plain language: it tells you whether your weight is proportional to your height. A person with a <strong>normal BMI</strong> — that is, a score between 18.5 and 24.9 — statistically carries a lower risk of developing conditions such as Type 2 diabetes, cardiovascular disease, sleep apnea, and certain cancers compared to individuals in overweight or obese categories.</p>
-
-        <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">How to Calculate BMI: The Formula Explained</h3>
-        <p>The standard <strong>BMI formula</strong> is straightforward. In the metric system: <strong>BMI = weight (kg) &divide; height&sup2; (m&sup2;)</strong>. In the imperial system used in the United States: <strong>BMI = [weight (lbs) &divide; height&sup2; (inches&sup2;)] &times; 703</strong>.</p>
-        <p>For example, if you weigh 75 kg and stand 1.75 m tall, your BMI = 75 &divide; (1.75 &times; 1.75) = 75 &divide; 3.0625 = 24.5 — which places you comfortably in the <strong>Normal Weight</strong> category. Our free <strong>BMI calculator in kg</strong> above handles this calculation instantly, supporting both metric and imperial inputs and returning your full result within seconds.</p>
-
-        <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">BMI Chart: Understanding the Categories</h3>
-        <p>The WHO <strong>BMI chart</strong> divides adult body weight into four primary categories based on BMI score:</p>
-        <ul class="list-disc pl-5 space-y-1">
-          <li><strong>Underweight</strong>: BMI below 18.5 — may indicate malnutrition, excessive leanness, or an underlying medical condition.</li>
-          <li><strong>Normal Weight</strong>: BMI 18.5 to 24.9 — the healthy range associated with lowest chronic disease risk. A BMI of 20 to 22 is considered optimal for longevity.</li>
-          <li><strong>Overweight</strong>: BMI 25 to 29.9 — excess weight relative to height; carries elevated risk of metabolic conditions.</li>
-          <li><strong>Obese (Class I, II, III)</strong>: BMI 30 and above — significantly elevated risk of cardiovascular disease, diabetes, joint problems, and reduced life expectancy.</li>
-        </ul>
-        <p>The <strong>normal BMI range</strong> of 18.5 to 24.9 is used universally for adult men and women aged 20 and above. For Asian populations, many health authorities recommend a lower Overweight threshold of 23.0 due to differences in how visceral fat accumulates at equivalent BMI levels.</p>
-
-        <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">BMI Calculator for Men vs. BMI Calculator for Women</h3>
-        <p>The mathematical formula is identical for both sexes, but body composition differs significantly between men and women. A <strong>BMI calculator for men</strong> applies the same equation — weight divided by height squared — but results are interpreted with the knowledge that men naturally carry more skeletal muscle mass. This means a muscular man may register in the Overweight category despite having very low body fat. For highly active men or athletes, combining BMI with body fat percentage or waist circumference measurement provides a more accurate health picture.</p>
-        <p>A <strong>BMI calculator for women</strong> or <strong>BMI calculator female</strong> works the same way, but women physiologically carry higher essential body fat (approximately 20 to 35 percent in the healthy range) compared to men (8 to 19 percent) at equivalent BMI scores. Postmenopausal women and pregnant women should interpret BMI alongside additional clinical markers rather than relying on it as a standalone indicator.</p>
-
-        <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">BMI Calculator with Age and Kg</h3>
-        <p>Our <strong>BMI calculator with age</strong> takes your age into account when generating personalised health insights. While BMI thresholds remain constant across adulthood, age affects body composition interpretation: older adults, particularly those over 65, may benefit from a slightly higher BMI of 23 to 27 as a protective buffer against frailty, sarcopenia (muscle loss), and osteoporosis. Entering your age ensures the insights you receive are calibrated appropriately to your life stage.</p>
-
-        <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">Why Use Our BMI Calculator?</h3>
-        <p>Unlike basic BMI calculators that show only a score, <strong>BMI Calculator Pro</strong> provides a complete health analysis suite — entirely free, with no registration required, and no data ever leaving your browser. Here is what you get in one click:</p>
-        <ul class="list-disc pl-5 space-y-1">
-          <li>Your BMI score and WHO weight category with a visual animated gauge</li>
-          <li>Healthy weight range for your height</li>
-          <li>Ideal body weight using four clinical formulas: Devine (1974), Robinson (1983), Miller (1983), and BMI-22 Standard</li>
-          <li>Ponderal Index (an alternative leanness metric)</li>
-          <li>Personalised health advice, risk factors, and actionable recommendations</li>
-          <li>Saved calculation history stored locally in your browser</li>
-          <li>Eight additional health calculators: Calorie (TDEE), BMR, Body Fat Percentage, Protein Intake, Water Intake, Ideal Weight, Healthy Weight, and Waist-to-Height Ratio</li>
-        </ul>
-
-        <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">Limitations of BMI</h3>
-        <p>While BMI is a validated, evidence-based screening tool, it has well-documented limitations. It does not directly measure body fat — it uses weight and height as proxies. Athletes with high muscle mass may be misclassified as Overweight. It does not distinguish between subcutaneous fat (under the skin) and visceral fat (around organs), which has more direct metabolic consequences. For the most comprehensive health assessment, use BMI alongside waist circumference, body fat percentage, blood pressure, fasting glucose, and lipid profiles.</p>
-        <p>BMI Calculator Pro is designed to be informational and educational. Results should always be discussed with a qualified healthcare professional before making clinical decisions.</p>
-
-      </article>
-    </div>
-  </section>
-
-</MainLayout>
+</Layout>

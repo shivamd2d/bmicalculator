@@ -1,34 +1,119 @@
 import type { BmiCategoryDetails, BmiCategoryType, FaqItem, MythItem } from '../types/bmi';
 
 export const BMI_CATEGORIES: Record<BmiCategoryType, BmiCategoryDetails> = {
+  severe_thinness: {
+    type: 'severe_thinness',
+    label: 'Severe Thinness',
+    rangeText: '< 16.0',
+    minBmi: 0,
+    maxBmi: 15.99,
+    color: '#ef4444', // Red
+    bgColor: 'bg-red-50 dark:bg-red-950/40',
+    borderColor: 'border-red-200 dark:border-red-800',
+    textColor: 'text-red-600 dark:text-red-400',
+    badgeBg: 'bg-red-100 dark:bg-red-900/60 text-red-800 dark:text-red-200',
+    iconName: 'AlertOctagon',
+    description: 'BMI is under 16.0, representing severe thinness and potential undernutrition risk.',
+    healthAdvice: [
+      'Immediate medical evaluation is strongly recommended to assess underlying nutritional deficiency.',
+      'Prioritize structured caloric refeeding under medical supervision.',
+      'Incorporate nutrient-dense foods and essential micro-nutrients.'
+    ],
+    risks: [
+      'Severe muscle wasting and electrolyte imbalance',
+      'Impaired immune defense and heightened infection risk',
+      'Osteopenia and cardiovascular stress'
+    ],
+    recommendations: [
+      'Consult a physician and registered dietitian immediately',
+      'Follow a tailored medical nutrition therapy plan',
+      'Avoid unmonitored strenuous exercise until cleared'
+    ]
+  },
+  moderate_thinness: {
+    type: 'moderate_thinness',
+    label: 'Moderate Thinness',
+    rangeText: '16.0 – 16.9',
+    minBmi: 16.0,
+    maxBmi: 16.99,
+    color: '#f97316', // Orange
+    bgColor: 'bg-orange-50 dark:bg-orange-950/40',
+    borderColor: 'border-orange-200 dark:border-orange-800',
+    textColor: 'text-orange-600 dark:text-orange-400',
+    badgeBg: 'bg-orange-100 dark:bg-orange-900/60 text-orange-800 dark:text-orange-200',
+    iconName: 'AlertTriangle',
+    description: 'BMI between 16.0 and 16.9 indicates moderate thinness requiring nutritional focus.',
+    healthAdvice: [
+      'Increase daily caloric intake with wholesome, nutrient-dense foods.',
+      'Combine calorie surplus with gentle strength training to build lean body mass.',
+      'Monitor energy levels, sleep quality, and digestive health.'
+    ],
+    risks: [
+      'Fatigue, dizziness, and low physical stamina',
+      'Hormonal irregularities and bone density reduction',
+      'Nutritional shortages in key vitamins and minerals'
+    ],
+    recommendations: [
+      'Eat 4-5 frequent meals featuring healthy fats, proteins, and complex carbs',
+      'Include nut butters, seeds, whole milk products, and avocados',
+      'Schedule routine health checkups'
+    ]
+  },
+  mild_thinness: {
+    type: 'mild_thinness',
+    label: 'Mild Thinness',
+    rangeText: '17.0 – 18.4',
+    minBmi: 17.0,
+    maxBmi: 18.49,
+    color: '#eab308', // Yellow
+    bgColor: 'bg-amber-50 dark:bg-amber-950/40',
+    borderColor: 'border-amber-200 dark:border-amber-800',
+    textColor: 'text-amber-600 dark:text-amber-400',
+    badgeBg: 'bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-200',
+    iconName: 'TrendingDown',
+    description: 'BMI between 17.0 and 18.4 represents mild thinness, slightly below optimal WHO range.',
+    healthAdvice: [
+      'Slightly increasing nutrient intake can bring body mass into the normal healthy spectrum.',
+      'Focus on muscle building through progressive resistance exercise.',
+      'Ensure adequate protein intake (1.2–1.6g per kg of body weight).'
+    ],
+    risks: [
+      'Slightly elevated risk of bone fragility and low muscle reserve',
+      'Potential vulnerability during prolonged illness'
+    ],
+    recommendations: [
+      'Add nutrient-dense snacks between main meals',
+      'Incorporate resistance workouts 2-3 times weekly',
+      'Track weight trends monthly'
+    ]
+  },
   underweight: {
     type: 'underweight',
     label: 'Underweight',
     rangeText: '< 18.5',
     minBmi: 0,
     maxBmi: 18.49,
-    color: '#3b82f6', // blue
+    color: '#3b82f6',
     bgColor: 'bg-blue-50 dark:bg-blue-950/40',
     borderColor: 'border-blue-200 dark:border-blue-800',
     textColor: 'text-blue-600 dark:text-blue-400',
     badgeBg: 'bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-200',
     iconName: 'TrendingDown',
-    description: 'Your BMI is below 18.5, indicating you may be underweight for your height.',
+    description: 'BMI is below 18.5, indicating weight below the standard WHO recommendation.',
     healthAdvice: [
       'Focus on nutrient-dense foods rich in healthy fats, protein, and complex carbohydrates.',
       'Incorporate strength training exercises to build muscle mass rather than just body fat.',
-      'Consult a dietitian or healthcare provider to rule out nutritional deficiencies or underlying health conditions.'
+      'Consult a dietitian or healthcare provider to rule out nutritional deficiencies.'
     ],
     risks: [
       'Nutritional deficiencies (anemia, vitamin shortages)',
       'Weakened immune system function',
-      'Osteoporosis and bone density loss',
-      'Hormonal imbalances and fertility difficulties'
+      'Osteoporosis and bone density loss'
     ],
     recommendations: [
       'Eat smaller, frequent meals throughout the day',
       'Add calorie-dense snacks like nuts, seeds, and avocados',
-      'Avoid drinking large amounts of water before meals to preserve appetite'
+      'Preserve appetite by taking liquids between meals'
     ]
   },
   normal: {
@@ -37,13 +122,13 @@ export const BMI_CATEGORIES: Record<BmiCategoryType, BmiCategoryDetails> = {
     rangeText: '18.5 – 24.9',
     minBmi: 18.5,
     maxBmi: 24.99,
-    color: '#22c55e', // green
+    color: '#22c55e', // Green
     bgColor: 'bg-emerald-50 dark:bg-emerald-950/40',
     borderColor: 'border-emerald-200 dark:border-emerald-800',
     textColor: 'text-emerald-600 dark:text-emerald-400',
     badgeBg: 'bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-200',
     iconName: 'CheckCircle2',
-    description: 'Your BMI falls within the healthy range of 18.5 to 24.9.',
+    description: 'Your BMI falls within the healthy optimal range of 18.5 to 24.9.',
     healthAdvice: [
       'Maintain your healthy weight through a balanced diet and regular physical activity.',
       'Aim for at least 150 minutes of moderate aerobic activity or 75 minutes of vigorous activity weekly.',
@@ -65,13 +150,13 @@ export const BMI_CATEGORIES: Record<BmiCategoryType, BmiCategoryDetails> = {
     rangeText: '25.0 – 29.9',
     minBmi: 25.0,
     maxBmi: 29.99,
-    color: '#eab308', // yellow / amber
+    color: '#f59e0b', // Yellow/Amber
     bgColor: 'bg-amber-50 dark:bg-amber-950/40',
     borderColor: 'border-amber-200 dark:border-amber-800',
     textColor: 'text-amber-600 dark:text-amber-400',
     badgeBg: 'bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-200',
     iconName: 'AlertTriangle',
-    description: 'Your BMI is between 25.0 and 29.9, suggesting you are carrying extra weight for your height.',
+    description: 'Your BMI is between 25.0 and 29.9, suggesting extra weight relative to height.',
     healthAdvice: [
       'Slight weight reductions (5-10% of total body weight) yield substantial cardiovascular benefits.',
       'Focus on sustainable lifestyle modifications rather than restrictive crash diets.',
@@ -94,7 +179,7 @@ export const BMI_CATEGORIES: Record<BmiCategoryType, BmiCategoryDetails> = {
     rangeText: '30.0 – 34.9',
     minBmi: 30.0,
     maxBmi: 34.99,
-    color: '#f97316', // orange
+    color: '#f97316', // Orange
     bgColor: 'bg-orange-50 dark:bg-orange-950/40',
     borderColor: 'border-orange-200 dark:border-orange-800',
     textColor: 'text-orange-600 dark:text-orange-400',
@@ -123,7 +208,7 @@ export const BMI_CATEGORIES: Record<BmiCategoryType, BmiCategoryDetails> = {
     rangeText: '35.0 – 39.9',
     minBmi: 35.0,
     maxBmi: 39.99,
-    color: '#ef4444', // red
+    color: '#ef4444', // Red
     bgColor: 'bg-rose-50 dark:bg-rose-950/40',
     borderColor: 'border-rose-200 dark:border-rose-800',
     textColor: 'text-rose-600 dark:text-rose-400',
@@ -152,7 +237,7 @@ export const BMI_CATEGORIES: Record<BmiCategoryType, BmiCategoryDetails> = {
     rangeText: '≥ 40.0',
     minBmi: 40.0,
     maxBmi: 100.0,
-    color: '#991b1b', // dark red / crimson
+    color: '#991b1b', // Dark Red / Crimson
     bgColor: 'bg-red-50 dark:bg-red-950/50',
     borderColor: 'border-red-300 dark:border-red-800',
     textColor: 'text-red-700 dark:text-red-300',
@@ -203,11 +288,19 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     question: 'How is BMI calculated?',
-    answer: 'In the metric system, BMI = weight (kg) ÷ [height (m)]². In the imperial system, BMI = [weight (lbs) ÷ (height (inches))²] × 703.'
+    answer: 'In the metric system, BMI = weight (kg) ÷ [height (m)]². In the imperial system, BMI = 703 × weight (lbs) ÷ [height (inches)]².'
   },
   {
     question: 'What is a healthy BMI range for adults?',
     answer: 'According to the World Health Organization (WHO), a normal or healthy BMI for adults aged 20 and over is between 18.5 and 24.9.'
+  },
+  {
+    question: 'What is BMI Prime and how is it calculated?',
+    answer: 'BMI Prime is the ratio of your actual BMI to the upper boundary of healthy BMI (25.0). Formula: BMI Prime = BMI / 25.0. Values below 0.74 represent underweight, 0.74 to 1.0 represent normal weight, 1.0 to 1.2 represent overweight, and > 1.2 represent obesity.'
+  },
+  {
+    question: 'What is the Ponderal Index?',
+    answer: 'The Ponderal Index (PI) measures body mass relative to height cubed (kg/m³) or height in inches divided by the cube root of weight in lbs. It provides a truer measure of body proportionality for very tall or short individuals.'
   },
   {
     question: 'Does BMI apply to both men and women equally?',
@@ -215,67 +308,11 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     question: 'Why is BMI different for children and teenagers?',
-    answer: 'Children and teens are still growing, and body fat levels vary significantly by age and sex. Therefore, child BMI is evaluated using age-and-gender-specific percentile growth charts rather than fixed adult thresholds.'
+    answer: 'Children and teens are still growing, and body fat levels vary significantly by age and sex. Therefore, child BMI is evaluated using CDC percentile growth charts (underweight <5th, healthy 5th-85th, at risk 85th-95th, overweight >95th) rather than fixed adult thresholds.'
   },
   {
     question: 'What are the main limitations of BMI?',
     answer: 'BMI does not differentiate between muscle mass, bone density, water weight, and fat tissue. Athletes with high muscle mass may be misclassified as overweight or obese, while elderly individuals with muscle loss may have normal BMI despite elevated body fat.'
-  },
-  {
-    question: 'What is the Ponderal Index and how is it different from BMI?',
-    answer: 'The Ponderal Index (PI) measures body mass relative to height cubed (kg/m³) rather than height squared. It provides a more accurate proportionality measure for very tall or very short individuals.'
-  },
-  {
-    question: 'How does age affect BMI interpretation?',
-    answer: 'As people age, body composition shifts, naturally increasing fat percentage and reducing muscle mass. Research suggests that for adults over age 65, a slightly higher BMI (23–27.9) may actually offer protective health benefits.'
-  },
-  {
-    question: 'What is the difference between BMI and Body Fat Percentage?',
-    answer: 'BMI estimates overall body volume relative to height, whereas Body Fat Percentage measures the exact percentage of total body weight that consists of adipose (fat) tissue.'
-  },
-  {
-    question: 'How can I lower my BMI safely?',
-    answer: 'Safely lowering BMI involves creating a modest calorie deficit through a balanced whole-food diet, regular aerobic activity, resistance exercise to preserve muscle mass, adequate sleep, and proper hydration.'
-  },
-  {
-    question: 'What is Ideal Body Weight (IBW)?',
-    answer: 'Ideal Body Weight is a theoretical estimate of optimal body weight based on height, sex, and clinical research. Popular formulas include Devine, Robinson, Miller, and the standard BMI 22 median.'
-  },
-  {
-    question: 'Can you have a normal BMI and still be unhealthy?',
-    answer: 'Yes. This condition is often referred to as "Normal Weight Obesity" or "skinny fat." Individuals have a normal BMI but high levels of visceral fat around organs, raising risk for metabolic disorders.'
-  },
-  {
-    question: 'Why does muscle mass affect BMI results?',
-    answer: 'Muscle tissue is denser than fat tissue. A bodybuilder or athlete carrying significant lean muscle mass will weigh more for their height, resulting in an artificially elevated BMI despite low body fat.'
-  },
-  {
-    question: 'Is BMI accurate for tall or short people?',
-    answer: 'BMI can over-estimate fatness in tall people and under-estimate fatness in short people because body volume scales closer to height cubed than height squared. Using the Ponderal Index helps adjust for height extremes.'
-  },
-  {
-    question: 'What health risks are associated with high BMI?',
-    answer: 'High BMI values (≥25 for overweight, ≥30 for obese) are statistically linked to increased risk of cardiovascular disease, high blood pressure, Type 2 diabetes, gallstones, sleep apnea, osteoarthritis, and certain cancers.'
-  },
-  {
-    question: 'What health risks are associated with low BMI?',
-    answer: 'Low BMI (<18.5) can indicate malnutrition, osteoporosis, impaired immune response, anemia, electrolyte imbalance, and reproductive health complications.'
-  },
-  {
-    question: 'Does ethnic background affect healthy BMI cutoffs?',
-    answer: 'Yes. Clinical studies show that South Asian, East Asian, and Pacific Islander populations tend to store higher visceral fat at lower BMIs. Public health agencies suggest a lower overweight cutoff of 23.0 for Asian populations.'
-  },
-  {
-    question: 'How often should I calculate or track my BMI?',
-    answer: 'Tracking your BMI once per month or quarter is sufficient. Daily weight fluctuations are normal due to water retention and digestion, so focus on long-term trends rather than short-term variations.'
-  },
-  {
-    question: 'Should pregnant women use a BMI calculator?',
-    answer: 'No. Standard BMI calculations are invalid during pregnancy due to weight gain from fetal growth, placenta, amniotic fluid, and increased blood volume. Expectant mothers should follow prenatal weight guidelines from their obstetrician.'
-  },
-  {
-    question: 'What other measurements should I combine with BMI for complete health evaluation?',
-    answer: 'For a comprehensive health assessment, combine BMI with waist circumference (or Waist-to-Height Ratio), blood pressure, lipid profile, fasting blood glucose, and body fat percentage testing.'
   }
 ];
 

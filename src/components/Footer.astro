@@ -1,0 +1,77 @@
+---
+import { SATELLITE_TOOLS } from '../constants/bmi';
+---
+
+<footer class="bg-slate-900 text-slate-400 text-xs border-t border-slate-800 pt-16 pb-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+      {/* Brand Column */}
+      <div class="space-y-4 md:col-span-1">
+        <div class="flex items-center gap-2">
+          <img src="/favicon.svg" alt="BMI Calculator Pro logo" width="32" height="32" class="w-8 h-8 rounded-xl" />
+          <span class="font-extrabold text-base text-white">BMI Calculator Pro</span>
+        </div>
+        <p class="text-slate-400 text-xs leading-relaxed">
+          The ultimate medical-grade, privacy-first Body Mass Index calculator built for performance, accuracy, and accessibility.
+        </p>
+      </div>
+
+      {/* Satellite Tools Column 1 */}
+      <div>
+        <h4 class="font-bold text-white uppercase tracking-wider text-[11px] mb-3">Calculators (A - I)</h4>
+        <ul class="space-y-2">
+          {SATELLITE_TOOLS.slice(0, 4).map((tool) => (
+            <li>
+              <a href={tool.href} class="hover:text-white transition">{tool.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Satellite Tools Column 2 */}
+      <div>
+        <h4 class="font-bold text-white uppercase tracking-wider text-[11px] mb-3">Calculators (P - W)</h4>
+        <ul class="space-y-2">
+          {SATELLITE_TOOLS.slice(4).map((tool) => (
+            <li>
+              <a href={tool.href} class="hover:text-white transition">{tool.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Company Links Column */}
+      <div>
+        <h4 class="font-bold text-white uppercase tracking-wider text-[11px] mb-3">Company</h4>
+        <ul class="space-y-2">
+          <li><a href="/about-us" class="hover:text-white transition">About Us</a></li>
+          <li><a href="/contact-us" class="hover:text-white transition">Contact Us</a></li>
+          <li><a href="/privacy-policy" class="hover:text-white transition">Privacy Policy</a></li>
+          <li><a href="/terms-and-conditions" class="hover:text-white transition">Terms &amp; Conditions</a></li>
+          <li><a href="/#faq" class="hover:text-white transition">FAQ</a></li>
+        </ul>
+      </div>
+
+      {/* Medical Disclaimer Column */}
+      <div class="space-y-3">
+        <h4 class="font-bold text-white uppercase tracking-wider text-[11px]">Medical Disclaimer</h4>
+        <p class="text-slate-500 text-[11px] leading-relaxed">
+          This calculator and content are for informational and educational purposes only. They are not intended as a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider regarding medical conditions.
+        </p>
+      </div>
+    </div>
+
+    {/* Bottom Bar */}
+    <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500">
+      <p>© {new Date().getFullYear()} BMI Calculator Pro. All rights reserved.</p>
+      <div class="flex items-center gap-6 flex-wrap justify-center sm:justify-end">
+        <a href="/about-us" class="hover:text-slate-300">About Us</a>
+        <a href="/contact-us" class="hover:text-slate-300">Contact Us</a>
+        <a href="/privacy-policy" class="hover:text-slate-300">Privacy Policy</a>
+        <a href="/terms-and-conditions" class="hover:text-slate-300">Terms &amp; Conditions</a>
+      </div>
+    </div>
+
+  </div>
+</footer>

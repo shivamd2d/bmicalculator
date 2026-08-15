@@ -1,0 +1,108 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  keywords?: string;
+  ogImage?: string;
+  ogType?: string;
+}
+
+const {
+  title = "BMI Calculator Pro - Accurate Body Mass Index & Health Chart",
+  description = "Calculate your Body Mass Index (BMI), BMI Prime, and ideal healthy weight range instantly. Free online BMI calculator for adults, teens, and children with WHO/CDC charts.",
+  canonicalUrl = "https://bmicalculatorpro.online/",
+  keywords = "bmi calculator, bmi calculator pro, calculate body mass index, bmi formula, bmi chart adults, healthy weight calculator, ponderal index, bmi prime",
+  ogImage = "https://bmicalculatorpro.online/og-image.png",
+  ogType = "website"
+} = Astro.props;
+
+// JSON-LD Schemas
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "BMI Calculator Pro",
+  "url": canonicalUrl,
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "description": description,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "BMI Calculator Pro Team",
+    "url": "https://bmicalculatorpro.online/"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the formula used to calculate Body Mass Index (BMI)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "BMI is calculated by dividing body weight by the square of height. In metric units: BMI = Weight (kg) / [Height (m)]². In US customary units: BMI = 703 × Weight (lbs) / [Height (in)]²."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the standard WHO adult BMI range classifications?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "According to the World Health Organization (WHO): Severe Thinness is < 16.0, Moderate Thinness is 16.0–16.9, Mild Thinness is 17.0–18.4, Normal Weight is 18.5–24.9, Overweight is 25.0–29.9, Obese Class I is 30.0–34.9, Obese Class II is 35.0–39.9, and Obese Class III is ≥ 40.0."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is BMI Prime and how is it interpreted?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "BMI Prime is the ratio of an individual's actual BMI to the upper limit of optimal healthy BMI (25.0). A BMI Prime of 1.0 represents the threshold between normal weight and overweight. Values below 0.74 indicate thinness, 0.74–1.0 indicate optimal weight, 1.0–1.2 indicate overweight, and > 1.2 indicate obesity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the key limitations of Body Mass Index (BMI)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "BMI does not directly measure body fat percentage or distinguish between fat and muscle mass. As a result, highly muscular athletes may be misclassified as overweight or obese, while elderly individuals with low muscle mass may have a normal BMI despite having excess visceral body fat."
+      }
+    }
+  ]
+};
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content="BMI Calculator Pro" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalUrl} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={ogImage} />
+
+<!-- JSON-LD Structured Data Snippets -->
+<script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />

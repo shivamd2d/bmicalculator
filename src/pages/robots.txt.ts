@@ -1,14 +1,14 @@
 import type { APIRoute } from 'astro';
 
-export const GET: APIRoute = ({ site }) => {
-  const sitemapUrl = new URL('sitemap-index.xml', site || 'https://bmicalculator.app').href;
-  const content = `User-agent: *
+const robotsTxt = `
+User-agent: *
 Allow: /
 
-Sitemap: ${sitemapUrl}
-`;
+Sitemap: https://bmicalculatorpro.online/sitemap-index.xml
+`.trim();
 
-  return new Response(content, {
+export const GET: APIRoute = () => {
+  return new Response(robotsTxt, {
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
     },

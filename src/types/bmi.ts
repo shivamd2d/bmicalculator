@@ -5,7 +5,10 @@ export type Gender = 'male' | 'female';
 export type IdealWeightFormula = 'bmi22' | 'devine' | 'robinson' | 'miller';
 
 export type BmiCategoryType = 
-  | 'underweight' 
+  | 'severe_thinness'
+  | 'moderate_thinness'
+  | 'mild_thinness'
+  | 'underweight'
   | 'normal' 
   | 'overweight' 
   | 'obese1' 
@@ -53,7 +56,9 @@ export interface IdealWeightFormulaResult {
 
 export interface BmiResult {
   bmi: number;
-  ponderalIndex: number;
+  bmiPrime: number;
+  ponderalIndex: number; // metric kg/m³
+  ponderalIndexUs: number; // height (in) / weight (lbs)^(1/3)
   category: BmiCategoryDetails;
   heightCm: number;
   weightKg: number;
@@ -67,7 +72,7 @@ export interface BmiResult {
   idealWeightLbs: number;
   idealWeightFormulas: Record<IdealWeightFormula, IdealWeightFormulaResult>;
   selectedFormula: IdealWeightFormula;
-  weightDifferenceKg: number; // positive = over, negative = under, 0 = ideal
+  weightDifferenceKg: number;
   weightDifferenceLbs: number;
   insights: string[];
 }

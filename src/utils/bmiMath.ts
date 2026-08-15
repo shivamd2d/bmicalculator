@@ -1,7 +1,6 @@
 import { BMI_CATEGORIES, IDEAL_WEIGHT_FORMULAS_INFO } from '../constants/bmi';
 import type { 
   BmiCategoryDetails, 
-  BmiCategoryType, 
   BmiInput, 
   BmiResult, 
   IdealWeightFormula, 
@@ -44,10 +43,12 @@ export function normalizeInputs(input: BmiInput): { heightCm: number; weightKg: 
 }
 
 /**
- * Identify BMI Category based on WHO standards
+ * Identify BMI Category based on WHO standards (8 sub-classifications)
  */
 export function getBmiCategory(bmi: number): BmiCategoryDetails {
-  if (bmi < 18.5) return BMI_CATEGORIES.underweight;
+  if (bmi < 16.0) return BMI_CATEGORIES.severe_thinness;
+  if (bmi < 17.0) return BMI_CATEGORIES.moderate_thinness;
+  if (bmi < 18.5) return BMI_CATEGORIES.mild_thinness;
   if (bmi < 25.0) return BMI_CATEGORIES.normal;
   if (bmi < 30.0) return BMI_CATEGORIES.overweight;
   if (bmi < 35.0) return BMI_CATEGORIES.obese1;
@@ -136,7 +137,7 @@ export function generateHealthInsights(
   if (category.type === 'normal') {
     insights.push(`🎉 Congratulations! You are currently within the healthy weight range for your height.`);
     insights.push(`Maintaining your current weight through balanced nutrition and active habits is recommended.`);
-  } else if (category.type === 'underweight') {
+  } else if (category.type === 'severe_thinness' || category.type === 'moderate_thinness' || category.type === 'mild_thinness' || category.type === 'underweight') {
     insights.push(`⚠️ Gaining approximately ${deltaText} would place your BMI into the normal healthy range (18.5 – 24.9).`);
     insights.push(`Focus on nutrient-dense calorie sources and strength training to build healthy muscle mass.`);
   } else if (category.type === 'overweight') {
@@ -148,7 +149,9 @@ export function generateHealthInsights(
   }
 
   // Age-based insight
-  if (age >= 65) {
+  if (age < 20) {
+    insights.push(`ℹ️ Note: For children and teenagers aged 2–19, BMI percentiles relative to age and gender should be evaluated rather than fixed adult cutoffs.`);
+  } else if (age >= 65) {
     insights.push(`ℹ️ Note: For adults aged 65 and older, research indicates a slightly higher BMI (23.0 – 27.9) may provide protective health benefits.`);
   }
 
@@ -170,22 +173,52 @@ export function calculateBMIResult(
   const { heightCm, weightKg, heightInchesTotal, weightLbs } = normalizeInputs(input);
 
   const heightM = heightCm / 100;
-  const bmiRaw = weightKg / (heightM * heightM);
+  
+  // BMI metric: weightKg / (heightM^2)
+  // BMI US: 703 * weightLbs / (heightInchesTotal^2)
+  let bmiRaw: number;
+  if (input.unitSystem === 'imperial') {
+    bmiRaw = (703 * weightLbs) / (heightInchesTotal * heightInchesTotal);
+  } else {
+    bmiRaw = weightKg / (heightM * heightM);
+  }
   const bmi = Math.round(bmiRaw * 10) / 10;
 
+  // BMI Prime = BMI / 25.0
+  const bmiPrime = Math.round((bmi / 25.0) * 100) / 100;
+
+  // Metric Ponderal Index = weightKg / (heightM^3)
   const ponderalRaw = weightKg / (heightM * heightM * heightM);
   const ponderalIndex = Math.round(ponderalRaw * 10) / 10;
+
+  // US Ponderal Index = heightInches / (weightLbs^(1/3))
+  const ponderalUsRaw = heightInchesTotal / Math.cbrt(weightLbs);
+  const ponderalIndexUs = Math.round(ponderalUsRaw * 10) / 10;
 
   const category = getBmiCategory(bmi);
 
   // Healthy Weight Range (BMI 18.5 - 24.9)
-  const minHealthyKg = 18.5 * (heightM * heightM);
-  const maxHealthyKg = 24.9 * (heightM * heightM);
+  let minHealthyKg: number;
+  let maxHealthyKg: number;
+  let minHealthyLbs: number;
+  let maxHealthyLbs: number;
+
+  if (input.unitSystem === 'imperial') {
+    minHealthyLbs = (18.5 * heightInchesTotal * heightInchesTotal) / 703;
+    maxHealthyLbs = (24.9 * heightInchesTotal * heightInchesTotal) / 703;
+    minHealthyKg = minHealthyLbs * LBS_TO_KG;
+    maxHealthyKg = maxHealthyLbs * LBS_TO_KG;
+  } else {
+    minHealthyKg = 18.5 * (heightM * heightM);
+    maxHealthyKg = 24.9 * (heightM * heightM);
+    minHealthyLbs = minHealthyKg * KG_TO_LBS;
+    maxHealthyLbs = maxHealthyKg * KG_TO_LBS;
+  }
 
   const healthyWeightMinKg = Math.round(minHealthyKg * 10) / 10;
   const healthyWeightMaxKg = Math.round(maxHealthyKg * 10) / 10;
-  const healthyWeightMinLbs = Math.round(minHealthyKg * KG_TO_LBS * 10) / 10;
-  const healthyWeightMaxLbs = Math.round(maxHealthyKg * KG_TO_LBS * 10) / 10;
+  const healthyWeightMinLbs = Math.round(minHealthyLbs * 10) / 10;
+  const healthyWeightMaxLbs = Math.round(maxHealthyLbs * 10) / 10;
 
   // Ideal weight formulas
   const idealFormulas = calculateIdealWeightFormulas(heightCm, input.gender);
@@ -205,7 +238,9 @@ export function calculateBMIResult(
 
   return {
     bmi,
+    bmiPrime,
     ponderalIndex,
+    ponderalIndexUs,
     category,
     heightCm: Math.round(heightCm * 10) / 10,
     weightKg: Math.round(weightKg * 10) / 10,
