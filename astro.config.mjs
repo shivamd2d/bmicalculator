@@ -7,7 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://bmicalculatorpro.online/',
-  base: process.env.GITHUB_ACTIONS === 'true' ? '/bmicalculator' : '/',
+  base: process.env.GITHUB_ACTIONS === 'true' ? '/bmicalculator/' : '/',
   integrations: [
     react(),
     sitemap({
