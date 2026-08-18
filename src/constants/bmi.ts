@@ -342,49 +342,49 @@ export const MYTHS_LIST: MythItem[] = [
 export const SATELLITE_TOOLS = [
   {
     title: 'Calorie Calculator',
-    href: '/calorie-calculator',
+    href: 'calorie-calculator',
     description: 'Determine your daily caloric intake needed for maintenance, weight loss, or muscle gain.',
     iconName: 'Flame'
   },
   {
     title: 'Body Fat Calculator',
-    href: '/body-fat-calculator',
+    href: 'body-fat-calculator',
     description: 'Estimate your body fat percentage using US Navy body circumference methods.',
     iconName: 'Activity'
   },
   {
     title: 'BMR Calculator',
-    href: '/bmr-calculator',
+    href: 'bmr-calculator',
     description: 'Calculate your Basal Metabolic Rate using the Miffl-St Jeor and Harris-Benedict formulas.',
     iconName: 'HeartPulse'
   },
   {
     title: 'Protein Calculator',
-    href: '/protein-calculator',
+    href: 'protein-calculator',
     description: 'Find your target daily protein requirement based on your activity level and fitness goals.',
     iconName: 'Dumbbell'
   },
   {
     title: 'Water Intake Calculator',
-    href: '/water-intake-calculator',
+    href: 'water-intake-calculator',
     description: 'Calculate daily hydration requirements based on body weight, climate, and exercise routine.',
     iconName: 'Droplets'
   },
   {
     title: 'Ideal Weight Calculator',
-    href: '/ideal-weight-calculator',
+    href: 'ideal-weight-calculator',
     description: 'Compare body weight targets across Devine, Robinson, Miller, and BMI 22 formulas.',
     iconName: 'Target'
   },
   {
     title: 'Healthy Weight Calculator',
-    href: '/healthy-weight-calculator',
+    href: 'healthy-weight-calculator',
     description: 'Discover your personal healthy weight boundaries across WHO standards.',
     iconName: 'Scale'
   },
   {
     title: 'Waist-to-Height Calculator',
-    href: '/waist-to-height-calculator',
+    href: 'waist-to-height-calculator',
     description: 'Assess abdominal obesity risk and cardiovascular health with Waist-to-Height ratio.',
     iconName: 'Ruler'
   }

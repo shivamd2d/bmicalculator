@@ -1,5 +1,7 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+
+const faqUrl = `${import.meta.env.BASE_URL}#faq`;
 ---
 
 <MainLayout
@@ -125,7 +127,7 @@ import MainLayout from '../layouts/MainLayout.astro';
           <p class="text-xs text-slate-500 mt-1">Check our comprehensive FAQ section with 20+ answered questions about BMI and health metrics.</p>
         </div>
         <a
-          href="/#faq"
+          href={faqUrl}
           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white font-bold text-xs hover:bg-slate-50 dark:hover:bg-slate-700 transition shadow-sm whitespace-nowrap"
         >
           View FAQ →

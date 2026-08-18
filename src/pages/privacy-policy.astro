@@ -1,5 +1,7 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+
+const contactUrl = `${import.meta.env.BASE_URL}contact-us`;
 ---
 
 <MainLayout
@@ -58,7 +60,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 
         <section class="space-y-3">
           <h2 class="text-xl font-bold text-slate-900 dark:text-white">7. Contact Us</h2>
-          <p>If you have any questions or concerns about this Privacy Policy, please reach out to us via our <a href="/contact-us" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">Contact Us</a> page.</p>
+          <p>If you have any questions or concerns about this Privacy Policy, please reach out to us via our <a href={contactUrl} class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">Contact Us</a> page.</p>
         </section>
 
       </div>
