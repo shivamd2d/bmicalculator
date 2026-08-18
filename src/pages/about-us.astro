@@ -1,6 +1,8 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import { ShieldCheck, Sparkles, Target, Users } from 'lucide-react';
+
+const contactUrl = `${import.meta.env.BASE_URL}contact-us`;
 ---
 
 <MainLayout
@@ -92,7 +94,7 @@ import { ShieldCheck, Sparkles, Target, Users } from 'lucide-react';
         <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">Have Questions or Feedback?</h2>
         <p class="text-sm text-slate-600 dark:text-slate-400">We'd love to hear from you. Reach out through our contact page.</p>
         <a
-          href="/contact-us"
+          href={contactUrl}
           class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-lg shadow-indigo-500/25 transition"
         >
           Get in Touch
